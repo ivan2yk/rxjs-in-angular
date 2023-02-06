@@ -1,7 +1,8 @@
 import 'zone.js/dist/zone';
-import { Component } from '@angular/core';
+import { Component, OnInit, VERSION } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { bootstrapApplication } from '@angular/platform-browser';
+import {from, of} from 'rxjs';
 
 @Component({
   selector: 'my-app',
@@ -14,8 +15,13 @@ import { bootstrapApplication } from '@angular/platform-browser';
     </a>
   `,
 })
-export class App {
-  name = 'Angular';
+export class App implements OnInit {
+  name = 'Angular ' + VERSION.major;
+
+  ngOnInit() {
+    of(2, 4, 6, 8).subscribe((item) => console.log(item));
+  }
+
 }
 
 bootstrapApplication(App);
