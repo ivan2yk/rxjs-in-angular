@@ -3,7 +3,6 @@ import { Component, OnInit, VERSION } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { from, of, tap, map, take } from 'rxjs';
-import { mapOneOrManyArgs } from 'rxjs/internal/util/mapOneOrManyArgs';
 
 @Component({
   selector: 'my-app',
@@ -50,11 +49,11 @@ export class App implements OnInit {
             return item;
           }
         }),
-        take(2)
+        take(3)
       )
       .subscribe({
         next: (item) => console.log(item),
-        error: (err) => console.log(err),
+        error: (err) => console.log(`${err.message}`),
         complete: () => console.log('end'),
       });
   }
